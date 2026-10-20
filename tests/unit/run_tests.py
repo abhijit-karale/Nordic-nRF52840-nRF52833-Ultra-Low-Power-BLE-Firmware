@@ -166,10 +166,11 @@ class TestPowerFSM(unittest.TestCase):
         self.assertEqual(forced_wake_mask, 0x01)
 
 def run():
+    loader = unittest.defaultTestLoader
     suite = unittest.TestSuite()
-    suite.addTest(unittest.makeSuite(TestProtocolAndFraming))
-    suite.addTest(unittest.makeSuite(TestRetentionAndCorruption))
-    suite.addTest(unittest.makeSuite(TestPowerFSM))
+    suite.addTests(loader.loadTestsFromTestCase(TestProtocolAndFraming))
+    suite.addTests(loader.loadTestsFromTestCase(TestRetentionAndCorruption))
+    suite.addTests(loader.loadTestsFromTestCase(TestPowerFSM))
     runner = unittest.TextTestRunner(verbosity=2)
     result = runner.run(suite)
     return 0 if result.wasSuccessful() else 1
