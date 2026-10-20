@@ -1,0 +1,41 @@
+ID,Category,Test,Procedure,Expected Pass Criteria,Result
+TC-01,Boot,Cold boot,Insert cell / apply power,Device boots; starts fast advertising within 1 s,PENDING
+TC-02,Boot,Reset reason logging,Power-cycle; WDT reset; soft reset,Correct wake_reason and counters each time,PENDING
+TC-03,Boot,Default config on blank flash,Erase flash and boot,Defaults loaded; no fault,PENDING
+TC-04,Advertising,Fast adv interval,Capture with sniffer for 30 s,Interval within 100 ms (+0-10 ms random delay),PENDING
+TC-05,Advertising,Fast to slow transition,Observe after 30 s,Interval switches to 1000 ms,PENDING
+TC-06,Advertising,Slow to System OFF timeout,Wait 120 s unconnected,Enters System OFF; current drops to <= 2 uA,PENDING
+TC-07,Advertising,Adv payload content,Inspect with nRF Connect,Name/UUID/flags correct,PENDING
+TC-08,Connection,Connect/disconnect,Connect from phone then disconnect,State transitions ADV -> CONN_IDLE -> ADV,PENDING
+TC-09,Connection,Parameter negotiation,Check applied parameters,Conn interval 500 ms; latency 4; timeout 6 s,PENDING
+TC-10,Connection,Notify telemetry,Enable CCCD,20-byte frames at configured period; valid CRC,PENDING
+TC-11,Connection,Supervision timeout,Move central out of range,Link drops; device returns to advertising,PENDING
+TC-12,System ON,Idle current advertising 1s,PPK2 60s capture,Average <= 15 uA,PENDING
+TC-13,System ON,Connected idle current,PPK2 capture CI 500ms latency 4,Average <= 15 uA,PENDING
+TC-14,System ON,Telemetry event current,Capture one sample + notify,Per-event charge recorded; peripherals disabled after,PENDING
+TC-15,System ON,No busy-wait,Review capture/trace,CPU in sleep (WFE) between events,PENDING
+TC-16,System OFF,Entry via opcode,Write ENTER_SYSOFF to Control char,Link closes cleanly; device enters System OFF,PENDING
+TC-17,System OFF,OFF current no debugger,PPK2 on DUT without debugger,Board-level current <= 2 uA,PENDING
+TC-18,System OFF,OFF current with debugger attached,Repeat with J-Link,Document emulated System OFF current,PENDING
+TC-19,System OFF,Entry refusal if wake pin asserted,Hold button during entry,Entry deferred; no wake loop defect,PENDING
+TC-20,System OFF,RAM not retained behaviour,Write sentinel; System OFF; wake,Sentinel absent unless in retained section,PENDING
+TC-21,Wake,Button wake,Press button in System OFF,Wakes; reason = button; advertising starts,PENDING
+TC-22,Wake,Motion wake,Shake board in System OFF,Wakes; reason = motion; advertising starts,PENDING
+TC-23,Wake,External RTC wake,Program alarm interrupt,Wakes at alarm; reason = RTC,PENDING
+TC-24,Wake,Wake mask honoured,Disable motion in wake_mask,Motion does not wake device,PENDING
+TC-25,Wake,Wake latency,Scope wake edge to first adv packet,Latency < 1 s,PENDING
+TC-26,Wake,Spurious wake soak,24 h on bench without stimulus,0 spurious wakes,PENDING
+TC-27,Wake,GPREGRET persistence,Set code; System OFF; wake,Value preserved across deep sleep,PENDING
+TC-28,Retention,Counter persistence,Cycle System OFF 100 times,sysoff_cnt increments exactly to 100,PENDING
+TC-29,Retention,Corrupt retention record,Corrupt CRC deliberately,Detected; defaults loaded; F_RET_CRC flag set,PENDING
+TC-30,Sensors,Temperature accuracy,Compare with reference thermometer,Within sensor +/- 0.1 deg C spec band,PENDING
+TC-31,Sensors,Sensor absent,Disconnect TMP117,Sensor-fault flag set; no lockup; last-good held,PENDING
+TC-32,Sensors,I2C bus-stuck recovery,Hold SDA low briefly,9 recovery clocks issued; bus restored,PENDING
+TC-33,Battery,VDD measurement accuracy,Compare with DMM at 3.0/2.7/2.4 V,Error within +/- 50 mV,PENDING
+TC-34,Battery,Low-battery policy,Lower supply with bench source,Warning flag at 2.4V; critical <= 2.2V sleeps button-only,PENDING
+TC-35,Fault,Watchdog reset,Force infinite loop in test build,WDT reset within 10s; counter increments,PENDING
+TC-36,Fault,HardFault capture,Trigger deliberate fault,Fault record stored in .noinit; reported after reboot,PENDING
+TC-37,Fault,Invalid control frame,Send bad CRC or bad length,Frame ignored; bad_frames counter increments,PENDING
+TC-38,RF,Range test,Measure RSSI and LOS range,Record LOS range across TX power settings,PENDING
+TC-39,Stress,Mode-cycling soak,Automated adv -> conn -> OFF -> wake 1000x,No lockup; no memory leak,PENDING
+TC-40,Stress,Temperature sweep,0 deg C / 25 deg C / 45 deg C,Sleep current and BLE stability verified,PENDING

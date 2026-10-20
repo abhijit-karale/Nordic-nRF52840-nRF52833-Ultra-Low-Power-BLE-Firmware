@@ -1,0 +1,18 @@
+Ref,Qty,Description,Example Part,Notes
+U1,1,BLE SoC Module nRF52840,Raytac MDBT50Q-1MV2,Arm Cortex-M4F 1MB Flash 256kB RAM Integrated antenna and DC/DC
+U1-alt,1,BLE SoC Module nRF52833,Raytac MDBT50Q-512K,Port target: 512kB Flash 128kB RAM
+DK1,1,Development Kit Bringup,Nordic nRF52840-DK (PCA10056),Evaluation and profiling
+U2,1,Digital Temperature Sensor I2C,TI TMP117AIDRVR,One-shot low power shutdown mode
+U3,1,3-Axis Accelerometer I2C,ST LIS2DW12TR,Low-power wake-on-motion INT1 output
+U4,1,External RTC with Alarm (Optional),Micro Crystal RV-3028-C7,Periodic deep sleep wake from System OFF
+Y1,1,32.768 kHz Tuning Fork Crystal,Abracon ABS07-32.768KHZ-T,LFXO accuracy 20 ppm
+BT1,1,Primary Coin Cell Battery,CR2477 (or CR2450),Nominal 3.0V ~1000 mAh derated
+C1,1,Bulk Reservoir Capacitor Low ESR,47 uF 6.3V X5R 0805,Radio TX pulse current sag suppression
+C2-C4,3,Decoupling Capacitors,100 nF / 1 uF / 10 uF,Placed adjacent to SoC supply pins
+R1-R2,2,I2C Pull-Up Resistors,4.7 kOhm 0402 1%,Bus capacitance and rise time tuned
+R3,1,Button Pull-Up Resistor,1 MOhm 0402 (optional),Internal pull-up preferred
+SW1,1,Tactile Push Button Switch,Panasonic EVQ-P2,Active low to GND for user wake
+D1,1,Debug Status LED,0603 Green LED + 1 kOhm,Disabled in production firmware
+J1,1,SWD Programming Connector,Tag-Connect TC2030-NL,6-pin no-legs programming footprint
+TP1,1,Current Measurement Header,2-pin 0.1 inch header / 0 Ohm link,In series with VBAT for PPK2 profiling
+D2,1,ESD Protection Diode TVS,Nexperia PESD5V0V1BL,Low capacitance ESD protection on button line

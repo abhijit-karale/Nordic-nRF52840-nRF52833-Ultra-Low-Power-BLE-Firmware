@@ -1,0 +1,40 @@
+name: ULP-BLE Firmware CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  unit-tests:
+    name: Run Python Protocol & FSM Unit Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run verification test suite
+        run: |
+          python tests/unit/run_tests.py
+
+  build-firmware:
+    name: Cross-Compile Firmware (nRF52840 / nRF52833)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install ARM GNU Toolchain
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gcc-arm-none-eabi binutils-arm-none-eabi make
+      - name: Build nRF52840 Production
+        run: |
+          make -C firmware/build/armgcc BOARD=ulp_board_52840 LOG=0
+      - name: Clean build
+        run: |
+          make -C firmware/build/armgcc clean
+      - name: Build nRF52833 Port Target
+        run: |
+          make -C firmware/build/armgcc BOARD=ulp_board_52833 LOG=0

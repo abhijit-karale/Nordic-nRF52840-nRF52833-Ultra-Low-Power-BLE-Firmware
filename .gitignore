@@ -1,0 +1,26 @@
+# Object and binary outputs
+_build/
+*.o
+*.out
+*.hex
+*.bin
+*.elf
+*.map
+
+# Editor and OS files
+.vscode/
+.idea/
+*.swp
+*~
+.DS_Store
+Thumbs.db
+
+# Python bytecode and caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Test output logs
+tests/results/*.log
+tests/results/*.csv
+!tests/integration/test_cases.csv
